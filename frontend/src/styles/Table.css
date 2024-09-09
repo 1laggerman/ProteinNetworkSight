@@ -1,0 +1,21 @@
+.table-container{
+    height: 100%;
+    width: 100%;
+}
+.right{
+  float: right;
+}
+.cell-explanation{
+  font-size: var(--medium-text);
+  font-weight: bold;
+  padding: 12px;
+  font-size: small;
+  color: #4E7FB0;
+  text-align: center;
+}
+/* .ag-theme-alpine .ag-cell, .ag-theme-alpine .ag-full-width-row .ag-cell-wrapper.ag-row-group{
+  overflow-x: auto !important;
+}
+.ag-cell .ag-cell-not-inline-editing .ag-cell-normal-height .ag-cell-value{
+  height: 100px;
+} */

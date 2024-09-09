@@ -1,0 +1,11 @@
+.scroll-row-buttons{
+    width: 100%;
+    height:  100%;
+    justify-content: center;
+    align-items: center;
+     flex: 1;
+    display: flex;
+    overflow: auto;
+      flex-wrap: wrap;
+      flex-direction: row;
+}

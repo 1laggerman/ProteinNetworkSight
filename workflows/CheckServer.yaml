@@ -1,0 +1,38 @@
+name: 'Medmolnet healthy check'
+
+on:
+  schedule:
+    - cron: '0 20 * * *'
+
+jobs:
+  healthy-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check server connection
+        id: check-url
+        run: |
+          response_code=$(curl -s -o /dev/null -w "%{http_code}" https://medmolnet.jce.ac)
+          echo "::set-output name=status_code::$response_code"
+  
+  send-email:
+    runs-on: ubuntu-latest
+    needs: connect-to-url
+    if: $${{needs.connect-to-url.outputs.status_code != '200'}}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: send-email
+        env:
+          EMAIL: $${{secrets.EMAIL }}
+          EMAIL_PASSWORD: $${{ secrets.EMAIL_PASSWORD }}
+        run: |
+            echo "Subject: Server is Down" > email.txt
+            echo "" >> email.txt
+            echo "github action couldn't reach medmolnet server at $(date)" >> email.txt
+            echo "" >> email.txt
+            echo "Sent from GitHub Actions." >> email.txt
+            cat email.txt | sendmail -v -s "smtp.gmail.com:587" -o tls=yes -xu $EMAIL -xp $EMAIL_PASSWORD nitzanmr@gmail.com
+
+
+

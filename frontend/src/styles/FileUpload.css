@@ -1,0 +1,137 @@
+.upload-form {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.upload-wrap {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.upload-container {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  opacity: 0;
+}
+
+.drop-prompt {
+  margin-top: 20px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.drop-prompt>h1 {
+  color: var(--text-dark-blue);
+  font-size: var(--big-text);
+}
+
+.checked-prompt {
+  color: var(--text-gray);
+  font-size: var(--large-text);
+  display: inline-block;
+  z-index: 1;
+  position: absolute;
+  top: auto;
+  left: auto;
+}
+
+span {
+  color: var(--primary);
+}
+
+.fa-plus {
+  color: var(--primary);
+  font-size: 60px;
+}
+
+.upload-wrap:hover {
+  border-radius: 20px;
+  border: 1px dashed var(--text-dark-blue);
+  transition: all 0.2s ease-out;
+}
+
+.drop-file-name {
+  color: var(--text-dark-blue);
+  font-weight: normal;
+  font-size: var(--big-text);
+  margin-top: 20px;
+}
+
+.fa-check {
+  color: green;
+  margin-right: 15px;
+}
+
+.example-button {
+  display: inline-block;
+  z-index: 1;
+  position: absolute;
+  left: auto;
+  padding: 5px;
+  border: none;
+  background-color: white;
+  border-radius: 5px;
+  color: var(--text-blue);
+  text-decoration: underline;
+  font-size: var(--medium-text);
+  cursor: pointer;
+}
+
+.use-example {
+  top: 110%;
+}
+.dnld-example {
+  border: none;
+  background-color: white;
+  color: var(--text-blue);
+  text-decoration: underline;
+  font-size: var(--medium-text);
+  cursor: pointer;
+}
+/* }
+@media screen and (max-width: 1350px) {
+  .drop-h1 {
+    font-size: 30px;
+  }
+
+  .drop-p {
+    font-size: 20px;
+  }
+
+  .fa-plus {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .form-style fieldset legend {
+    font-size: 15px;
+  }
+
+  .form-style label > span {
+    font-size: 10px;
+  }
+
+  .form-style input[type="text"],
+  .form-style input[type="number"],
+  .form-style select,
+  .form-style textarea {
+    font-size: 10px;
+  }
+} */

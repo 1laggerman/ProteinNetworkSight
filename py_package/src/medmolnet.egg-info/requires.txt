@@ -1,0 +1,9 @@
+networkx
+pandas
+xlsxwriter
+requests
+patool
+psycopg2
+configparser
+pyvis
+numpy

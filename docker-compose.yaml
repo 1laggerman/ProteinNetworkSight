@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  medmolnet-front:
+    image: medmolnet-frontend
+    networks:
+      - medmolnet-network
+
+  medmolnet-back:
+    image: medmolnet-backend
+    networks:
+      - medmolnet-network
+  nginx:
+    container_name: nginx
+    restart: unless-stopped
+    image: nginx
+    ports:
+        - 80:80
+        - 8080:8080
+    volumes:
+        - ./nginx:/etc/nginx
+        - ./certbot/conf:/etc/letsencrypt
+        - ./certbot/www:/var/www/certbot
+    networks:
+      - medmolnet-network
+  # certbot:
+  #   image: certbot/certbot
+  #   container_name: certbot
+  #   depends_on:
+  #     - nginx
+  #   volumes: 
+  #     - ./certbot/conf:/etc/letsencrypt
+  #     - ./certbot/www:/var/www/certbot
+  #   command: certonly --webroot -w /var/www/certbot  --email nitzanmr@gmail.com -d proteinnetworksight.jce.ac -d medmolnet.jce.ac --expand --agree-tos --non-interactive
+  #   networks:
+  #     - medmolnet-network
+networks:
+  medmolnet-network:
+    driver: bridge

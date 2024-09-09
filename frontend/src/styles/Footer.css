@@ -1,0 +1,47 @@
+
+.footer-container {
+  left:0;
+  bottom:0;
+  right:0;
+  min-height: var(--frame-height);
+  width: 100%;
+  font-size: var(--medium-text);
+  display: flex;
+  align-items: center;
+  background-color: #e1edfd;
+  display: flex;
+  justify-content: space-between;
+}
+
+.names{
+  color:var(--text-dark-blue);
+  text-align: left;
+  padding: 12px;
+}
+
+.update{
+  color: var(--text-gray);
+  text-align: center;
+}
+
+.year{
+  color: var(--text-dark-blue);
+  text-align: right;
+  padding: 12px;
+}
+
+.name{
+  flex: 1;
+  text-align: left;
+}
+
+
+.update {
+  flex: 1;
+  text-align: center;
+}
+
+.years {
+  flex: 1;
+  text-align: right;
+}
