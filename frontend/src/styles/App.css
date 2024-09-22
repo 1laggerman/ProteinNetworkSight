@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+@font-face {
+  font-family: 'Local Brewery Four';
+  src: url('../assets/fonts/LocalBreweryFour-Regular.woff2') format('woff2'),
+       url('../assets/fonts/LocalBreweryFour-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  /* --font: 'Local Brewery Four', sans-serif ; */
+  --font: 'Google Sans', sans-serif;
+  --white: #FFFFFF;
+  --primary: #2b5b9b;
+  --transparent-primary:#a4c1e7c7;
+  --text-blue: #1e5399;
+  --text-gray: #7f92aa;
+  --background-gray:#D3D3D3;
+  --soft-gray: rgba(233, 236, 240, 0.502);
+  --text-dark-gray: #2B2B39;
+  --text-dark-blue: #052755;
+  --text-transparent-blue: #0a58bd;
+  --background-light-gradient: linear-gradient( #F1F6FD 20%, #e1edfd 100%);
+  --background-dark: #242424;
+  --background-dark-gradient: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  --padding-sides: 20px;
+  --frame-height: 60px;
+  --container-height: 100vh;;
+  --border-color: #b3d2fb;
+  --main-title:90px;
+  --big-text: 25px;
+  --big-medium-text:23px;
+  --medium-text: 19px;
+  --small-text: 17px;
+
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+  font-style: normal;
+   font-weight: normal;
+}
+*::-webkit-scrollbar {
+  width: 12px;
+}
+ 
+*::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px var(--border-color);
+}
+ 
+*::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  outline: 1px solid var(--text-dark-blue);
+}

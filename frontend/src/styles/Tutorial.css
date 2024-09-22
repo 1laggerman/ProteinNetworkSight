@@ -1,0 +1,73 @@
+.page-container {
+  background-image: var(--background-light-gradient);
+  padding-right: 10%;
+  padding-left: 10%;
+  height: 100%;
+  width: 100%;
+  padding: 1% 10%;
+}
+
+.tutorial-container {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* font-weight: 400; */
+  color: #000000;
+  line-height: 1.8;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-right: 10%;
+  padding-left: 10%;
+  border-radius: 10px;
+}
+
+.t-h1 {
+  text-align: center;
+  color: var(--text-dark-blue);
+  font-size: 30px;
+  margin-bottom: 20px;
+  height: 100%;
+  /* font-weight: bold; */
+}
+
+.t-h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: var(--big-text);
+    height: 100%;
+}
+
+.t-h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+    height: 100%;
+}
+
+.t-p {
+  font-size: var(--medium-text);
+  margin-top: 15px;
+  /* margin-bottom: 15px; */
+    height: 100%;
+}
+
+.note {
+  /* text-align: center; */
+  color: #666666;
+  text-decoration: none;
+  font-style: italic;
+}
+
+.t-img {
+  margin-top: 30px;
+  width: 100%;
+  height: 100%;
+}
+
+.t-li {
+    font-size: var(--medium-text);
+  /* list-style-position: inside; */
+}

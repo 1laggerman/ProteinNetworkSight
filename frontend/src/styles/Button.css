@@ -1,0 +1,103 @@
+.row-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2%;
+  opacity: 0.9;
+}
+
+.btn {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  text-align: center;
+}
+
+.btn--primary {
+  background-color: var(--primary);
+  color: white;
+  border: 1px solid var(--primary);
+}
+
+.btn--gray {
+  background-color: var(--transparent-primary);
+  color: var(--text-dark-blue);
+  font-weight: bold;
+  border: 1px solid var(--transparent-primary);
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--text-dark-blue);
+  border: 1px solid var(--primary);
+  transition: all 0.3s ease-out;
+}
+
+.btn--small {
+  height: 45px;
+  width: 60px;
+  font-size: var(--small-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+}
+
+.btn--medium {
+  height: 40px;
+  width: 100px;
+  font-size: var(--small-text);
+  text-transform: uppercase;
+}
+
+.btn--large {
+  height: 70px;
+  width: 100px;
+  font-size: var(--medium-text);
+  text-transform: uppercase;
+}
+
+.btn--wide {
+  height: 65px;
+  width: 240px;
+  font-size: var(--medium-text);
+  text-transform: uppercase;
+}
+
+.btn--primary:enabled:hover,
+.btn--outline:enabled:hover {
+  transition: all 0.3s ease-out;
+  color: black;
+  background-color: var(--transparent-primary);
+  transition: 250ms;
+}
+.active-btn,
+.btn--gray:enabled:hover{
+  transition: all 0.3s ease-out;
+  /* background-color: white; */
+  transition: 250ms;
+    border: 3px solid var(--text-dark-blue);
+}
+
+.btn:disabled,
+.btn[disabled] {
+  border: 1px solid #999999;
+  color: #666666;
+  background-color: white;
+  cursor: auto;
+}
+.btn--here{
+  text-decoration: underline;
+  background: none;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  color: var(--text-blue);
+}

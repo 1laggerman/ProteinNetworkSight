@@ -1,0 +1,248 @@
+
+/*   Overlay -> The layer that covers every item when item is active.
+
+    *------*-----------------*
+    | On   |                 |
+    |      |                 |
+    *------*-----------------*
+*/
+.abg-switch__overlay {
+  position: absolute;
+  height: 100%;
+  border-radius: 100px;
+  box-shadow: 0 0 4px 1px var(--primary) !important;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  transition: all 0.4s ease;
+    max-width: 100px;
+
+  outline: none; }
+
+/*  Item -> Every Item inside the container 
+
+    *------*-----------------*
+    | Item |                 |
+    |      |                 |
+    *------*-----------------*
+*/
+
+.abg-switch__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: inherit;
+  cursor: pointer;
+  min-width: 100px;
+  height: 100%;
+  padding: 5px;
+  font-size: var(--small-text)!important;
+  background: transparent;
+  overflow: visible;
+  border: none;
+  outline: none; }
+  .abg-switch__item:not(.switch__item--disable):hover {
+    color: var(--primary)!important; }
+  .abg-switch__item input {
+    display: none; }
+
+.abg-switch__item.abg-switch__item--on {
+  z-index: 2;
+  color: var(--text-blue) !important;
+  outline: none; }
+  .abg-switch__item.abg-switch__item--on:hover {
+    color: var(--text-blue) !important; }
+
+.abg-switch__item.abg-switch__item--disable {
+  opacity: 0.3; }
+  .abg-switch__item.abg-switch__item--disable:hover {
+    color: inherit; }
+
+/*  Switch -> The container
+
+    *------------------------*
+    |                        |
+    |                        |
+    *------------------------*
+*/
+
+.abg-switch {
+  width: 100%;
+  min-height: 30px;
+  box-sizing: border-box;
+  margin: 5px;
+  outline: none; 
+background-color: #b3d2fb6f !important;}
+
+.abg-switch__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: fit-content;
+  height: 100%;
+  min-height: 30px;
+  border: 1px solid white;
+  border-radius: 100px;
+  z-index: 1;
+  outline: none; }
+
+.abg-switch--disable {
+  opacity: 0.3; }
+
+
+
+.suggestions-scroll {
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    padding:20px;
+}
+
+.fieldset-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 110px;
+    padding: 15px;
+    font-size: var(--small-text);
+    overflow: hidden;
+    align-items: center;
+
+}
+.protein-label{
+  font-weight: bold;
+  margin: 5px;
+}
+.suggestions-stats{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 10%;
+}
+
+/*
+.suggestions-buttons{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80px;
+    padding: 5px;
+}
+
+.include-prompt{
+    width: 10%;
+    height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   color: var(--text-blue);
+    font-size: var(--small-text);
+}
+
+.match-prompt{
+    width: 90%;
+    height: 100%;
+   display: flex;
+   justify-content: start;
+   align-items: center;
+    font-size: var(--medium-text);
+    padding: 10px;
+}
+.fieldset-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    font-size: var(--small-text);
+    overflow: hidden;
+}
+
+.check-container{
+    height: 100%;
+    width: 10%;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.suggestions-checkbox{
+ width: 20px !important;
+ height: 20px !important;
+   margin: 5px;
+ -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance:none;
+  outline: 1px solid var(--text-blue);
+  box-shadow: none;
+  text-align: center;
+  line-height: 1em;
+  font-size: var(--small-text);
+}
+
+input[type='checkbox']:checked:after {
+  content: '✔';
+  color: var(--text-blue);
+}
+
+.suggestion-container{
+    height: 100%;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+} 
+.suggestions-box{
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: auto;
+   border:  1px solid var(--soft-gray);
+}
+
+.one-suggestion>*{
+    margin: 2px;
+}
+.one-suggestion{
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: var(--small-text);
+    align-items: center;
+    justify-content: center;
+   
+}
+.one-suggestion>input[type=text]{
+    width: 120px;
+} */
+
+/* 
+.suggestions-row{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    align-items: center;
+    padding: 10px;
+}
+.suggestions-row-must-fill{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    align-items: center;
+    padding: 10px;
+    background-color: rgb(255, 236, 231);
+}
+
+.name-label{
+    margin-left: 2px;
+}
+*/

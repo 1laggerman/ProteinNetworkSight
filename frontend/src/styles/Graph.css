@@ -1,0 +1,17 @@
+.graph-container{
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #0a58bd;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+.over{
+   position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+}
