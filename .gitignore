@@ -8,7 +8,7 @@ backend/common/database.ini
 # Ignore Certbot configuration files
 /etc/letsencrypt/
 *.pem
-
+*/downloadDB
 .idea/
 .vscode/
 .venv*/

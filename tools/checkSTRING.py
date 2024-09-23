@@ -1,19 +1,11 @@
 
 import requests
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-response = requests.api.request('GET', 'https://string-db.org/api/json/version')
 
-version = response.json()[0]['string_version']
-
-print(version)
-
-links_table = f'https://stringdb-downloads.org/download/protein.links.v{version}.txt.gz'
-species_table = f'https://stringdb-downloads.org/download/species.v{version}.txt'
-proteins_table = f'https://stringdb-downloads.org/download/protein.info.v{version}.txt.gz'
-proteins_aliases_table = f'https://stringdb-downloads.org/download/protein.aliases.v{version}.txt.gz'
-
-tables = [links_table, species_table, proteins_table, proteins_aliases_table]
 
 def download_file(url):
 
@@ -22,7 +14,8 @@ def download_file(url):
     # NOTE the stream=True parameter below
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
-        with open(Path('DB', local_filename), 'wb') as f:
+        print(Path('../DB', local_filename))
+        with open(Path('../DB', local_filename), 'wb') as f:
             for chunk in r.iter_content(chunk_size=8192): 
                 # If you have chunk encoded response uncomment if
                 # and set chunk_size parameter to None.
@@ -31,9 +24,24 @@ def download_file(url):
     return local_filename
 
 
-# download_file(species_table)
+response = requests.api.request('GET', 'https://string-db.org/api/json/version')
 
-for table in tables:
-    download_file(table)
+version = response.json()[0]['string_version']
+
+if (os.getenv('DB_VERSION') != version):
+    open('.env', 'w').write(f'DB_VERSION={version}')
+    os.environ['DB_VERSION'] = version
+    print(version)
+
+    links_table = f'https://stringdb-downloads.org/download/protein.links.v{version}.txt.gz'
+    species_table = f'https://stringdb-downloads.org/download/species.v{version}.txt'
+    proteins_table = f'https://stringdb-downloads.org/download/protein.info.v{version}.txt.gz'
+    proteins_aliases_table = f'https://stringdb-downloads.org/download/protein.aliases.v{version}.txt.gz'
+
+    tables = [links_table, species_table, proteins_table, proteins_aliases_table]
 
 
+    download_file(species_table)
+
+    # for table in tables:
+    #     download_file(table)

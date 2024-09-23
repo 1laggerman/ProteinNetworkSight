@@ -1,0 +1,14 @@
+pipeline:
+  agent: any
+
+  triggers:
+    - cron: "H 0 1 * *"  # Run on the 1st of each month
+
+  stages:
+    - stage: "Run Python Script"
+      steps:
+        - sh: "python3 checkSTRING.py"
+
+  post:
+    always:
+      - echo: "Job completed!"
