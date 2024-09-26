@@ -3,6 +3,7 @@ import { IPanelProps } from "../@types/props";
 import "../styles/Panel.css";
 
 const Panel: FC<IPanelProps> = ({ node, onClickClose }) => {
+  console.log(node);
   return (
     <div className="panel-container">
       <div>
@@ -12,6 +13,18 @@ const Panel: FC<IPanelProps> = ({ node, onClickClose }) => {
         <p className="paragraph-style">
           <span className="panel-container-span">ID:</span>
           {node.id}
+        </p>
+        <p className="paragraph-style">
+          <span className="panel-container-span">Weighted Node Degree:</span>
+          {node.linksWeights}
+        </p>
+        <p className="paragraph-style">
+          <span className="panel-container-span">Node Value:</span>
+          {node.size}
+        </p>
+        <p className="paragraph-style">
+          <span className="panel-container-span">Final Score:</span>
+          {node.size / 2 + node.linksWeights / 2}
         </p>
         <p className="paragraph-style">
           <span className="panel-container-span">Info:</span> {node.info}
@@ -24,6 +37,7 @@ const Panel: FC<IPanelProps> = ({ node, onClickClose }) => {
           <span className="panel-container-span">Links:</span>
           {node.links.join(', ')}
         </p>
+       
       </div>
     </div>
   );
