@@ -40,6 +40,8 @@ export const ActionPage: FC = () => {
         return <SuggestionsS {...stepProps} />;
       case 4:
         return <OthersS {...stepProps} />;
+      case 5:
+        return <Result />;
       default:
         return <></>;
     }
@@ -67,16 +69,27 @@ export const ActionPage: FC = () => {
       <div className="action-page">
         <div className="explanation-wrapper">{renderStepExplanation()}</div>
 
-        {step === 5 ? (
-          <div className="result">
-            <Result />
-          </div>
-        ) : (
-          <div className="steps">
-            <div className="step-bar">
-              <StepsBar step={step} />
-            </div>
+        {/* {step === 5 ? (
 
+
+            <div className="result">
+              <Result />
+              <div className="buttons-bar">
+              <ButtonsBar
+                formId={"form" + step}
+                step={step}
+                goBackStep={goBackStep}
+              />
+          </div>
+            </div> */}
+
+        
+          <div className="steps">
+            {step !== 5 && (
+                <div className="step-bar">
+                  <StepsBar step={step} />
+                </div>  
+            )}
             <div className="step-content">{renderStepComponent()}</div>
 
             <div className="buttons-bar">
@@ -88,7 +101,7 @@ export const ActionPage: FC = () => {
               />
             </div>
           </div>
-        )}
+        
       </div>
     </StateMachineProvider>
   );

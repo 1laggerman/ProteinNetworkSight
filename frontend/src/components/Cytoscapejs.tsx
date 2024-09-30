@@ -15,16 +15,7 @@ import { updateIsLoading, updateShowError } from "../common/UpdateActions";
 import { headers } from "../assets/DefualtFile";
 import { faDiagramProject, faDownload,faPencil } from '@fortawesome/free-solid-svg-icons';
 import fcose from 'cytoscape-fcose';
-// import { Canvas } from "fabric/fabric-impl";
-// import cise from 'cytoscape-cise';
-{/* <FontAwesomeIcon icon="fa-solid fa-grip-lines" /> */}
 cytoscape.use( fcose );
-// cytoscape.use( cise );
-
-// import fs from 'fs';
-// import { json } from "stream/consumers";
-// import canvas from "canvas"
-// import {fabric} from "fabric"
 
 /**
  * The component create the graph, using cytoscape.js library.
@@ -72,7 +63,7 @@ const CytoscapejsComponentself: FC<IGraphProps> = ({
   };
   
   const [layout, setLayout] = useState<any>({
-    name: 'random',
+    name: 'circle',
     fit: true, // whether to fit the viewport to the graph
     padding: 30, // padding used on fit
     avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
@@ -110,6 +101,7 @@ const CytoscapejsComponentself: FC<IGraphProps> = ({
         event.preventDefault();
       
         setTimeout(() => {
+          setOpenContextMenu(false);
           setOpenContextMenu(true);
       
           const Xpos = event.originalEvent.x;
@@ -173,19 +165,17 @@ const CytoscapejsComponentself: FC<IGraphProps> = ({
       const clickedVectors = val['clicked_vectors'] || { positions: [],threshold:{},elements:[]};
       
       var elementsVector = clickedVectors.elements || [];
-      
-      if (clickedVector in clickedVectors && clickedVectors[clickedVector].threshold.pos === thresholds.pos && clickedVectors[clickedVector].threshold.neg === thresholds.neg) {
+      if (clickedVector in clickedVectors && clickedVectors[clickedVector].threshold.pos === thresholds.pos && clickedVectors[clickedVector].threshold.neg === thresholds.neg && clickedVectors[clickedVector].positions.length === graphData.nodes.length) {
 
         elementsVector = clickedVectors[clickedVector].elements[0]
         const positions = clickedVectors[clickedVector].positions;
-
         if (positions != undefined) {
           setElements(elementsVector);
           setNodePositions(positions);
 
           // Create a layout with saved positions
           console.log("positions: \n", positions)
-
+          console.log("number_of_elements: \n",positions.length)
           layout.name = 'preset';
           layout.positions = positions.reduce((positionsObj: any, node: any) => {
             const nodeId = Object.keys(node)[0];
@@ -196,7 +186,7 @@ const CytoscapejsComponentself: FC<IGraphProps> = ({
         }
       } else {
         console.log("Setting the elements for the first time");
-        layout.name = 'random';
+        layout.name = 'circle';
         layout.positions = false;
 
         if (clickedVector in clickedVectors){
@@ -231,7 +221,7 @@ const CytoscapejsComponentself: FC<IGraphProps> = ({
     // fetchData();
     console.log("elements: \n", elements)
 
-  }, [clickedVector, graphData.nodes, graphData.links, state.fileName]);
+  }, [ graphData.nodes, graphData.links, state.fileName]);
 
   useEffect(() => {
     cyRef.current?.layout(layout).run();
@@ -329,8 +319,8 @@ const CytoscapejsComponentself: FC<IGraphProps> = ({
         data: {
           id: node.id,
           label: node.id == undefined || typeof node.id === "number"? node.id: node.id,
-          color: node.color,
-          size: Math.abs(node.size === undefined ? 0 : node.size) * 110, // set the size of the node to be bigger so it will be shown in the graph.
+          color: getNodeColor(node.size),
+          size: ( nodes.length / 2),  // set the size of the node to be bigger so it will be shown in the graph.
         },
       })
     );
@@ -352,6 +342,30 @@ const CytoscapejsComponentself: FC<IGraphProps> = ({
     // setElements(elements)
   };
   
+
+// The function return the color of the node based on the size
+const getNodeColor = (size: number): string => {
+  if (size === 0) return "#B2E5FF"; // Light Blue for zero
+
+  // Darker warm colors for positive values, with doubled range
+  if (size > 0.9) return "#CC3700"; // Darker Orange Red
+  if (size > 0.7) return "#E5533A"; // Darker Tomato
+  if (size > 0.5) return "#CCAC00"; // Darker Gold
+  if (size > 0.3) return "#CC8400"; // Darker Orange
+  if (size > 0.1) return "#CC6F00"; // Darker Dark Orange
+
+  // Darker cool colors for negative values, with doubled range
+  if (size < -0.9) return "#1875CC"; // Darker Dodger Blue
+  if (size < -0.7) return "#0093CC"; // Darker Deep Sky Blue
+  if (size < -0.5) return "#009999"; // Darker Dark Turquoise
+  if (size < -0.3) return "#1A8C80"; // Darker Light Sea Green
+  if (size < -0.1) return "#4A7980"; // Darker Cadet Blue
+
+  return "#B2E5FF"; // Default light blue for any other values (just in case)
+};
+
+
+
 //The function return the color of the link, based on the score
 const getLinkColor = (score: Number) => {
   if (score === 1994) return "white";

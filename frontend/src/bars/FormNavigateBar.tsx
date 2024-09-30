@@ -33,14 +33,18 @@ const ButtonsBar: FC<IButtonsProps> = ({ formId, step, goBackStep }) => {
           clear file
         </button>
       )}
-      <button
+      {step !== 5 && (
+        <button
         className="btn  btn--primary btn--wide"
         type="submit"
         disabled={state.isLoading}
         form={formId}
-      >
+        >
         next
       </button>
+      )}
+
+      
     </div>
   );
 };
