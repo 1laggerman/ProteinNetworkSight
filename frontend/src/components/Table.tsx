@@ -88,6 +88,11 @@ const updateExplanationText = (cellColumn?:string)=>{
     sortable: true,
   };
 
+
+  const onSortChanged = () => {
+    
+  };
+
   return (
     <div className="ag-theme-alpine table-container">
       <div className="cell-explanation">
@@ -97,6 +102,7 @@ const updateExplanationText = (cellColumn?:string)=>{
         defaultColDef={defaultColDef}
         rowData={rowData}
         columnDefs={columnDefs}
+        onSortChanged={onSortChanged}
         onCellClicked={(event) => {
           updateExplanationText(event.colDef.field);
         }}

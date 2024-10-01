@@ -342,7 +342,6 @@ const CytoscapejsComponentself: FC<IGraphProps> = ({
     // setElements(elements)
   };
   
-
 // The function return the color of the node based on the size
 const getNodeColor = (size: number): string => {
   if (size === 0) return "#B2E5FF"; // Light Blue for zero
@@ -422,6 +421,56 @@ const savePositionsToIndexedDB = async () => {
   }
 };
 
+const btnCsvClick = async () => {
+  const val = await get(state.fileName);
+  let values_map: { [key: string]: { [id: string]: number } } = {};
+  const ids_arr = Array<string>();
+
+  console.log("state.namesStringMap: \n", Object.keys(state.namesStringMap))
+  for(const objName in state.namesStringMap){
+    if(state.namesStringMap[objName].stringId !== '0'){
+      ids_arr.push(state.namesStringMap[objName].stringName)
+    }
+  }
+  console.log("ids_arr: \n", ids_arr)
+  // Prepare values_map where keys are vectorNames and ids
+  for (const vectorName in val['vectorsValues']) {
+    const values_arr = val['vectorsValues'][vectorName] || [];
+    if (!values_map[vectorName]) {
+      values_map[vectorName] = {};
+    }
+    for (let i = 0; i < values_arr.length; i++) {
+      values_map[vectorName][ids_arr[i]] = values_arr[i];
+    }
+  }
+
+  // Prepare CSV
+  let csvContent = '';
+  // Add the header row (first column will be 'ID')
+  csvContent += 'UID,' + Object.keys(val['vectorsValues']).join(',') + '\n';
+
+  // Add rows for each protein ID
+  ids_arr.forEach((id) => {
+    const row = [id]; // Start row with the protein ID
+    Object.keys(val['vectorsValues']).forEach((vectorName) => {
+      const value = values_map[vectorName][id] || '';
+      row.push(value);
+    });
+    csvContent += row.join(',') + '\n'; // Join row values and add to CSV content
+  });
+
+  // Create a downloadable file
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.setAttribute('href'State, url);
+  link.setAttribute('download', `${state.fileName.split('.')[0]}.csv`);
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
   const btnJsonClick = () => {
     const cy = cyRef.current;
     if (cy) {
@@ -476,6 +525,7 @@ const contextMenuItems: MenuItem[] = [
       { label: '.svg', icon: faDownload, onClick: btnSVGExportClick },
       { label: '.png', icon: faDownload, onClick: btnPngClick },
       { label: '.json', icon: faDownload, onClick: btnJsonClick },
+      { label: '.tsv', icon: faDownload, onClick: btnCsvClick },
     ],
   },
   {
